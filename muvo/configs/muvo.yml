@@ -1,0 +1,98 @@
+LOG_DIR: 'tensorboard_logs'
+TAG: '2d, resnet18, w/o bev, range view, transformer, with voxel'
+
+CML_PROJECT: 'muvo'
+CML_TASK: 'muvo'
+CML_TYPE: 'training'
+CML_DATASET: 'carla_dataset'
+CML_DATASET_VERSION: '2.0.0'
+
+GPUS: 1
+BATCHSIZE: 1
+STEPS: 100000
+VAL_CHECK_INTERVAL: 5000
+LOGGING_INTERVAL: 200
+LOG_VIDEO_INTERVAL: 2500
+N_WORKERS: 16
+
+OPTIMIZER:
+  ACCUMULATE_GRAD_BATCHES: 16
+  FROZEN:
+    ENABLED: False
+    TRAIN_LIST: ['voxel_decoder']
+
+PREDICTION:
+  N_SAMPLES: 1
+
+MODEL:
+  TRANSFORMER_TRANSITION:
+    ENABLED: True
+  ROUTE:
+    ENABLED: True
+  TRANSFORMER:
+    ENABLED: True
+    CHANNELS: 384
+    BEV: False
+    LARGE: False
+  LIDAR:
+    POINT_PILLAR:
+      ENABLED: False
+  ENCODER:
+    NAME: 'resnet18'
+  BEV:
+    BACKBONE: 'resnet18'
+  LIDAR:
+    ENCODER: 'resnet18'
+  ROUTE:
+    BACKBONE: 'resnet18'
+
+EVAL:
+  RGB_SUPERVISION: True
+  NO_LIFTING: False
+
+SEMANTIC_SEG:
+  ENABLED: False
+
+VOXEL_SEG:
+  ENABLED: True
+  DIMENSION: 64
+  N_CLASSES: 2
+  USE_WEIGHTS: False
+
+LIDAR_SEG:
+  ENABLED: False
+  N_CLASSES: 9
+  USE_WEIGHTS: True
+
+LIDAR_RE:
+  ENABLED: True
+
+SEMANTIC_IMAGE:
+  ENABLED: False
+  N_CLASSES: 9
+  USE_WEIGHTS: True
+
+DEPTH:
+  ENABLED: False
+
+LOSSES:
+  SSIM: False
+  RGB_INSTANCE: False
+  PERCEPTUAL:
+    ENABLED: False
+    MODEL: 'resnet18'
+
+RECEPTIVE_FIELD: 4
+FUTURE_HORIZON: 2
+
+PRETRAINED:
+  PATH: 'path to weight'
+  CML_MODEL: ''
+
+DATASET:
+#  DATAROOT: '/disk/vanishing_data/qw825/carla_dataset'
+  DATAROOT: 'path to dataset'
+
+IMAGE:
+  CAMERA_POSITION: [1.0, 0.0, 2.0]  # (forward, right, up)
+

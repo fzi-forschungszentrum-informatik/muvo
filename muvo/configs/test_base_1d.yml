@@ -1,0 +1,42 @@
+_BASE_: 'muvo.yml'
+
+LOG_DIR: 'tensorboard_logs'
+TAG: 'test_base, 1d, resnet18, w/o bev, range view, transformer, with voxel'
+
+CML_TYPE: 'application'
+
+PREDICTION:
+  N_SAMPLES: 1
+
+MODEL:
+  TRANSFORMER_TRANSITION:
+    ENABLED: False
+  ROUTE:
+    ENABLED: True
+  TRANSFORMER:
+    ENABLED: True
+    CHANNELS: 384
+    BEV: False
+    LARGE: False
+  LIDAR:
+    POINT_PILLAR:
+      ENABLED: False
+  ENCODER:
+    NAME: 'resnet18'
+  BEV:
+    BACKBONE: 'resnet18'
+  LIDAR:
+    ENCODER: 'resnet18'
+  ROUTE:
+    BACKBONE: 'resnet18'
+
+RECEPTIVE_FIELD: 6
+FUTURE_HORIZON: 10
+
+PRETRAINED:
+  PATH: 'path to weights'
+#  CML_MODEL: ''
+
+DATASET:
+#  DATAROOT: '/disk/vanishing_data/qw825/carla_dataset'
+  DATAROOT: 'path to dataset'

@@ -1,0 +1,63 @@
+hydra:
+  run:
+    dir: ${work_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+#    dir: /mnt/d/python/dataset/outputs
+
+work_dir: /mnt/d/python/dataset/outputs
+
+defaults:
+  - agent:
+#    - muvo
+    - ppo
+    - my
+  - test_suites: lb_data
+  - _self_
+
+dataset_root: 'dataset'
+carla_sh_path: '/mnt/d/software/carla/0.9.14/CarlaUE4.exe'
+port: 2000
+n_episodes: 1
+run_time: ${actors.hero.terminal.kwargs.max_time}
+
+ev_id: hero
+resume: false
+log_level: INFO
+host: localhost
+seed: 0
+no_rendering: false
+render_off_screen: true
+kill_running: true
+remove_final_steps: true
+cml_project: MasterThesis/world_model
+cml_task_name: carla_data
+cml_task_type: application
+cml_tags: null
+log_video: false
+
+actors:
+  hero:
+    driver: ppo
+    reward:
+      entry_point: reward.valeo_action:ValeoAction
+    terminal:
+      entry_point: terminal.leaderboard_dagger:LeaderboardDagger
+      kwargs:
+        max_time: 2
+        no_collision: true
+        no_run_rl: true
+        no_run_stop: true
+
+agent:
+  ppo:
+    wb_run_path: iccv21-roach/trained-models/1929isj0
+    wb_ckpt_step: null
+  my:
+    obs_configs:
+      birdview_label:
+        module: birdview.chauffeurnet_label
+        width_in_pixels: 192
+        pixels_ev_to_bottom: 32
+        pixels_per_meter: 5.0
+        history_idx: [-16, -11, -6, -1]
+        scale_bbox: true
+        scale_mask_col: 1.0

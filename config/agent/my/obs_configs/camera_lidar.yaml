@@ -1,0 +1,48 @@
+speed:
+  module: actor_state.speed
+gnss:
+  module: navigation.gnss
+route_plan:
+  module: navigation.waypoint_plan
+  steps: 20
+central_rgb:
+  module: camera.rgb
+  fov: 100
+  width: 960
+  height: 600
+  location: [0.5, 0.0, 2.0]
+  rotation: [0.0, 0.0, 0.0]
+left_rgb:
+  module: camera.rgb
+  fov: 100
+  width: 960
+  height: 600
+  location: [-2.0, -0.7, 2.0]
+  rotation: [0.0, 0.0, -60.0]
+right_rgb:
+  module: camera.rgb
+  fov: 100
+  width: 960
+  height: 600
+  location: [-2.0, 0.7, 2.0]
+  rotation: [0.0, 0.0, 60.0]
+lidar_points:
+  module: lidar.ray_cast
+  location: [-1.0, 0.0, 2.0]
+  rotation: [0.0, 0.0, 0.0]
+  render_o3d: False
+  show_axis: False
+  no_noise: False
+  lidar_options:
+    channels: 64
+    range: 100
+    rotation_frequency: 25
+    points_per_second: 600000
+    upper_fov: 10.0
+    lower_fov: -30.0 # -30.0
+    atmosphere_attenuation_rate: 0.004
+    # if no_noise
+    dropoff_general_rate: 0.45
+    dropoff_intensity_limit: 0.8
+    dropoff_zero_intensity: 0.4
+

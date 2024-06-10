@@ -1,0 +1,2 @@
+defaults:
+  - my/obs_configs: camera_lidar_semantic

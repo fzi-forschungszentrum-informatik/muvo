@@ -1,0 +1,22 @@
+root: /mnt/d/python/dataset/test/trainval/train/
+#data_path: ${root}/2023-04-19/17-32-11/dataset/Town01/0000/depth_semantic
+
+n_process: 8
+#date: 2023-04-19
+#time: 17-32-11
+#town: Town01
+#run_name: 0000
+camera_position: [1.0, 0.0, 2.0]
+lidar_position: [1.0, 0.0, 2.0]
+fov: 110
+voxel_resolution: 0.5
+voxel_size: [192, 192, 64]
+bev_offset_forward: 0 # in px
+bev_resolution: 0.2
+offset_z: -20 # in px
+
+
+cml_project: MasterThesis/world_model
+cml_task_name: voxelization
+cml_task_type: data_processing
+cml_tags: null

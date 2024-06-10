@@ -1,0 +1,78 @@
+_BASE_: 'muvo.yml'
+
+LOG_DIR: 'tensorboard_logs'
+TAG: 'debug'
+
+GPUS: 1
+BATCHSIZE: 1
+
+STEPS: 8
+LOGGING_INTERVAL: 2
+LOG_VIDEO_INTERVAL: 2
+VAL_CHECK_INTERVAL: 3
+LIMIT_VAL_BATCHES: 2
+N_WORKERS: 0
+
+PREDICTION:
+  N_SAMPLES: 1
+
+OPTIMIZER:
+  ACCUMULATE_GRAD_BATCHES: 1
+  FROZEN:
+    ENABLED: False
+    TRAIN_LIST: ['bev_decoder', 'voxel_decoder']
+
+SEMANTIC_SEG:
+  ENABLED: False
+
+VOXEL_SEG:
+  ENABLED: True
+  DIMENSION: 64
+  N_CLASSES: 2
+  USE_WEIGHTS: False
+
+LIDAR_SEG:
+  ENABLED: False
+  N_CLASSES: 9
+  USE_WEIGHTS: True
+
+LIDAR_RE:
+  ENABLED: True
+
+SEMANTIC_IMAGE:
+  ENABLED: False
+  N_CLASSES: 9
+  USE_WEIGHTS: True
+
+DEPTH:
+  ENABLED: False
+
+LOSSES:
+  RGB_INSTANCE: False
+  SSIM: False
+
+MODEL:
+  EMBEDDING_DIM: 512
+  TRANSFORMER:
+    ENABLED: True
+    BEV: False
+    LARGE: False
+  LIDAR:
+    POINT_PILLAR:
+      ENABLED: False
+
+EVAL:
+  RGB_SUPERVISION: True
+
+RECEPTIVE_FIELD: 2
+FUTURE_HORIZON: 1
+
+PRETRAINED:
+#  PATH: 'weights/epoch=37-step=57600.ckpt'
+#  PATH: 'weights/epoch=65-step=99000.ckpt'
+  PATH: 'weights/epoch=3-step=50000.ckpt'
+#  PATH: ''
+#
+#DATASET:
+#  DATAROOT: ''
+#  VERSION: 'mini'
