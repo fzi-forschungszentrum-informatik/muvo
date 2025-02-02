@@ -1,6 +1,6 @@
-# MUVO
+# Occupancy-Guided Sensor Fusion Strategies for Generative Predictive World Models
 This is the PyTorch implementation for the paper
-> MUVO: A Multimodal World Model with Spatial Representations for Autonomous Driving. <br/>
+>  Occupancy-Guided Sensor Fusion Strategies for Generative Predictive World Models <br/>
 
 ## Requirements
 The simplest way to install all required dependencies is to create 
