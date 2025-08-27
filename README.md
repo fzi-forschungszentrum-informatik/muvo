@@ -6,7 +6,7 @@ This is the PyTorch implementation for the paper
 The simplest way to install all required dependencies is to create 
 a [conda](https://docs.conda.io/projects/miniconda/en/latest/) environment by running
 ```
-conda env create -f conda_env.yml
+conda env create -f carla_env.yml
 ```
 Then activate conda environment by
 ```
